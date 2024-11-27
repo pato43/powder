@@ -10,7 +10,7 @@ csv_path = 'path/to/your/expanded_csv.csv'  # Cambia la ruta al CSV
 data = pd.read_csv(csv_path)
 
 # Cargar el GeoJSON (Tenancingo)
-geojson_path = '/mnt/data/Tenancingo(1).geojson'  # Ruta al archivo GeoJSON
+geojson_path = 'Tenancingo(1).geojson'  # Ruta al archivo GeoJSON
 with open(geojson_path, 'r', encoding='utf-8') as file:
     geojson_data = json.load(file)
 
