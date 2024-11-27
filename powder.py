@@ -1,17 +1,9 @@
 pip install folium
-import streamlit as st
 import pandas as pd
 import folium
 from folium.plugins import MarkerCluster
 from folium import GeoJson, GeoJsonTooltip
 import json
-from streamlit_folium import st_folium
-
-# Configurar la página de Streamlit
-st.set_page_config(page_title="Mapa de Incidentes - Tenancingo", layout="wide")
-
-# Título de la aplicación
-st.title("Mapa de Incidentes en Tenancingo y Zonas Cercanas")
 
 # Cargar el CSV
 csv_path = 'path/to/your/expanded_csv.csv'  # Cambia la ruta al CSV
@@ -22,7 +14,7 @@ geojson_path = '/mnt/data/Tenancingo(1).geojson'  # Ruta al archivo GeoJSON
 with open(geojson_path, 'r', encoding='utf-8') as file:
     geojson_data = json.load(file)
 
-# Crear el mapa con Folium
+# Crear un mapa base centrado en Tenancingo
 m = folium.Map(location=[18.923890, -99.588610], zoom_start=12, tiles='cartodbpositron')
 
 # Añadir el contorno del municipio de Tenancingo desde el GeoJSON
@@ -72,5 +64,6 @@ for _, row in data.iterrows():
             icon=folium.Icon(color='red', icon='info-sign')
         ).add_to(marker_cluster)
 
-# Mostrar el mapa en Streamlit
-st_data = st_folium(m, width=800, height=600)
+# Guardar el mapa en un archivo HTML
+m.save('Tenancingo_Expanded_Incidents_Map.html')
+print("Mapa guardado como 'Tenancingo_Expanded_Incidents_Map.html'")
