@@ -1,4 +1,4 @@
-pip install folium
+!pip install folium
 import pandas as pd
 import folium
 from folium.plugins import MarkerCluster
