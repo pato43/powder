@@ -6,7 +6,7 @@ from folium import GeoJson, GeoJsonTooltip
 import json
 
 # Cargar el CSV
-csv_path = 'path/to/your/expanded_csv.csv'  # Cambia la ruta al CSV
+csv_path = 'Tenancingo_Payday_Incidents.csv'  # Cambia la ruta al CSV
 data = pd.read_csv(csv_path)
 
 # Cargar el GeoJSON (Tenancingo)
