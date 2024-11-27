@@ -2,16 +2,21 @@ import pandas as pd
 import folium
 from folium.plugins import MarkerCluster
 from folium import GeoJson, GeoJsonTooltip
+from streamlit_folium import st_folium
 import json
+import streamlit as st
 
 # Cargar el CSV
-csv_path = 'Tenancingo_Payday_Incidents.csv'  # Cambia la ruta al CSV
+csv_path = 'path/to/your/expanded_csv.csv'  # Cambia la ruta al CSV
 data = pd.read_csv(csv_path)
 
 # Cargar el GeoJSON (Tenancingo)
-geojson_path = 'Tenancingo(1).geojson'  # Ruta al archivo GeoJSON
+geojson_path = '/mnt/data/Tenancingo(1).geojson'  # Ruta al archivo GeoJSON
 with open(geojson_path, 'r', encoding='utf-8') as file:
     geojson_data = json.load(file)
+
+# Título en la app
+st.title("Mapa interactivo de Tenancingo")
 
 # Crear un mapa base centrado en Tenancingo
 m = folium.Map(location=[18.923890, -99.588610], zoom_start=12, tiles='cartodbpositron')
@@ -63,6 +68,5 @@ for _, row in data.iterrows():
             icon=folium.Icon(color='red', icon='info-sign')
         ).add_to(marker_cluster)
 
-# Guardar el mapa en un archivo HTML
-m.save('Tenancingo_Expanded_Incidents_Map.html')
-print("Mapa guardado como 'Tenancingo_Expanded_Incidents_Map.html'")
+# Mostrar el mapa en Streamlit
+st_data = st_folium(m, width=800, height=600)
